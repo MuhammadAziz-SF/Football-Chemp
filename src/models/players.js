@@ -2,11 +2,12 @@ import { type } from "os";
 import { DataTypes } from "sequelize";
 
 export default (sequelize) => {
-    const Players = sequelize.define("players", 
+    const players = sequelize.define("players", 
         {
             player_id: {
                 type: DataTypes.UUID,
                 primaryKey: true,
+                defaultValue: DataTypes.UUIDV4,
                 field: "player_id",
             },
             full_name: {
@@ -14,10 +15,10 @@ export default (sequelize) => {
                 allowNull: false,
                 field: "full_name",
             },
-            data_of_birth: {
+            date_of_birth: {
                 type: DataTypes.DATE,
                 allowNull: false,
-                field: "data_of_birth",
+                field: "date_of_birth",
             },
             position: {
                 type: DataTypes.STRING,
@@ -38,6 +39,9 @@ export default (sequelize) => {
                 allowNull: false,
                 field: "jersey_number",
             }
-        })
-    return Players;
+        }, {
+            tableName: 'players',
+            timestamps: false
+        });
+    return players;
 };

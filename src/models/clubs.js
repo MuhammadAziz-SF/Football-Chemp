@@ -1,15 +1,16 @@
 import { DataTypes } from "sequelize";
 
 export default (sequelize) => {
-    const Clubs = sequelize.define(
-        "Clubs",
+    const clubs = sequelize.define(
+        "football_clubs",
         {
             club_id: {
                 type: DataTypes.UUID,
                 primaryKey: true,
+                defaultValue: DataTypes.UUIDV4,
                 field: "club_id",
             },
-            clubName: {
+            club_name: {
                 type: DataTypes.STRING(100),
                 allowNull: false,
                 unique: true,
@@ -31,6 +32,9 @@ export default (sequelize) => {
                 field: "founded_year",
 
             }
-        })
-    return Clubs;
+        }, {
+            tableName: 'football_clubs',
+            timestamps: false
+        });
+    return clubs;
 }

@@ -1,24 +1,22 @@
-import { DataTypes, Model } from "sequelize";
+import { DataTypes } from "sequelize";
 
 export default (sequelize) => {
-    const TournamentsGroup = sequelize.define(
-        'TournamentsGroup',
+    const tournamentsGroup = sequelize.define(
+        'tournament_groups',
     {
         group_id: {
             type: DataTypes.UUID,
-            defaultValue: DataTypes.UUID,
             primaryKey: true,
+            defaultValue: DataTypes.UUIDV4,
             field: 'group_id'
         },
         groupName: {
             type: DataTypes.STRING(100),
             allowNull: false,
-            unique: true,
             field: 'group_name'
         },
         tournament_id: {
             type: DataTypes.UUID,
-            primaryKey: true,
             allowNull: false,
             field: 'tournament_id',
             references: {
@@ -29,9 +27,13 @@ export default (sequelize) => {
         created_at: {
             type: DataTypes.DATE,
             allowNull: false,
+            defaultValue: DataTypes.NOW,
             field: 'created_at'
         }
-    });
+    }, {
+        tableName: 'tournament_groups',
+        timestamps: false
+    }); 
 
-    return TournamentsGroup;
+    return tournamentsGroup;
 };

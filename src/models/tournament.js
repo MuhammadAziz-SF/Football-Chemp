@@ -1,26 +1,26 @@
 import { DataTypes } from 'sequelize';
 
 export default (sequelize) => {
-  const Tournament = sequelize.define('Tournament', {
+  const tournament = sequelize.define('tournaments', {
     tournament_id: {
       type: DataTypes.UUID,
-      defaultValue: DataTypes.UUID,
       primaryKey: true,
+      defaultValue: DataTypes.UUIDV4,
       field: 'tournament_id'
     },
-    tournamentName: {
+    tournament_name: {
       type: DataTypes.STRING(100),
       allowNull: false,
       unique: true,
       field: 'tournament_name'
     },
-    startDate: {
-      type: DataTypes.DATEONLY,
+    start_date: {
+      type: DataTypes.DATE,
       allowNull: false,
       field: 'start_date'
     },
-    endDate: {
-      type: DataTypes.DATEONLY,
+    end_date: {
+      type: DataTypes.DATE,
       allowNull: false,
       field: 'end_date'
     },
@@ -33,5 +33,5 @@ export default (sequelize) => {
     timestamps: false
   });
 
-  return Tournament;
+  return tournament;
 };

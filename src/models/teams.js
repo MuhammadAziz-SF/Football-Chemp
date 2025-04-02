@@ -1,12 +1,13 @@
 import { DataTypes } from "sequelize";
 
 export default (sequelize) => {
-    const Team = sequelize.define(
-        'Team', 
+    const teams = sequelize.define(
+        'teams', 
         {
             team_id: {
                 type: DataTypes.UUID,
                 primaryKey: true,
+                defaultValue: DataTypes.UUIDV4,
                 field: 'team_id',
             },
             team_name: {
@@ -24,7 +25,7 @@ export default (sequelize) => {
                 },
             },
             group_id: {
-                type: DataTypes.UUID,
+                type: DataTypes.UUID,   
                 allowNull: false,
                 field: 'group_id',
                 references: {
@@ -38,6 +39,9 @@ export default (sequelize) => {
                 field: 'coach_name',
             },
 
-        });
-    return Team;
+        }, {
+            tableName: 'teams',
+            timestamps: false
+        });     
+    return teams;
 };

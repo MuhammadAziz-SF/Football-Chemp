@@ -1,6 +1,6 @@
 -- Tournaments Table
 create table if not exists tournaments (
-    tournament_id uuid primary key default gen_random_uuid(),
+    tournament_id uuid primary key,
     tournament_name varchar(100) not null unique,
     start_date date not null,
     end_date date not null,
@@ -9,7 +9,7 @@ create table if not exists tournaments (
 
 -- Tournament Groups Table
 create table if not exists tournament_groups (
-    group_id uuid primary key default gen_random_uuid(),
+    group_id uuid primary key,
     group_name varchar(100) not null,
     tournament_id uuid not null,
     foreign key (tournament_id) references tournaments(tournament_id),
@@ -18,7 +18,7 @@ create table if not exists tournament_groups (
 
 -- Football Clubs Table
 create table if not exists football_clubs (
-    club_id uuid primary key default gen_random_uuid(),
+    club_id uuid primary key,
     club_name varchar(100) not null unique,
     city varchar(100) not null,
     country varchar(100) not null,
@@ -27,7 +27,7 @@ create table if not exists football_clubs (
 
 -- Teams Table
 create table if not exists teams (
-    team_id uuid primary key default gen_random_uuid(),
+    team_id uuid primary key,
     team_name varchar(100) not null,
     club_id uuid not null,
     group_id uuid not null,
@@ -38,7 +38,7 @@ create table if not exists teams (
 
 -- Players Table
 create table if not exists players (
-    player_id uuid primary key default gen_random_uuid(),
+    player_id uuid primary key,
     full_name varchar(100) not null,
     date_of_birth date not null,
     position varchar(50) not null,
@@ -49,7 +49,7 @@ create table if not exists players (
 
 -- Match Fixtures Table
 create table if not exists match_fixtures (
-    match_id uuid primary key default gen_random_uuid(),
+    match_id uuid primary key,
     match_date date not null,
     venue varchar(100),
     home_team_id uuid not null,
@@ -63,10 +63,3 @@ create table if not exists match_fixtures (
     match_status varchar(20) not null
 );
 
--- Tokens Table
-create table if not exists tokens (
-    access_token varchar(255) primary key,
-    refresh_token varchar(255) not null,
-    expires_at timestamp not null,
-    created_at timestamp default current_timestamp
-);

@@ -3,12 +3,13 @@ import { DataTypes } from "sequelize";
 export default (sequelize) => {
     const matchFixtures = sequelize.define("match_fixtures",
         {
-            match_id: {
+            matchId: {
                 type: DataTypes.UUID,
                 primaryKey: true,
+                defaultValue: DataTypes.UUIDV4,
                 field: "match_id",
             },
-            match_date: {
+            matchDate: {
                 type: DataTypes.DATE,
                 allowNull: false,
                 field: "match_date",
@@ -17,7 +18,7 @@ export default (sequelize) => {
                 type: DataTypes.STRING,
                 field: "venue",
             },
-            home_team_id: {
+            homeTeamId: {
                 type: DataTypes.UUID,
                 allowNull: false,
                 field: "home_team_id",
@@ -26,7 +27,7 @@ export default (sequelize) => {
                     key: "team_id",
                 }
             },
-            away_team_id: {
+            awayTeamId: {
                 type: DataTypes.UUID,
                 allowNull: false,
                 field: "away_team_id",
@@ -35,19 +36,33 @@ export default (sequelize) => {
                     key: "team_id",
                 }
             },
-            home_team_score: {
-                type: DataTypes.INTEGER,
-                field: "home_team_score",
+            tournamentId: {
+                type: DataTypes.UUID,
+                allowNull: false,
+                field: "tournament_id",
+                references: {
+                    model: "tournaments",
+                    key: "tournament_id",
+                }
             },
-            away_team_score: {
+            homeScore: {
                 type: DataTypes.INTEGER,
-                field: "away_team_score",
+                defaultValue: 0,
+                field: "home_score",
             },
-            match_status: {
+            awayScore: {
+                type: DataTypes.INTEGER,
+                defaultValue: 0,
+                field: "away_score",
+            },
+            matchStatus: {
                 type: DataTypes.STRING,
                 allowNull: false,
                 field: "match_status",
             }
-        })
+        }, {
+            tableName: 'match_fixtures',
+            timestamps: false
+        });
     return matchFixtures;
 };

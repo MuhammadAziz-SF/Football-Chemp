@@ -30,7 +30,7 @@ const swaggerOptions = {
       }
     ],
   },
-  apis: ['./src/routes/*.js', './src/controller/*.js'] // Include both routes and controllers for annotations
+  apis: ['./src/routes/*.js', './src/controller/*.js'] 
 };
 
 // Initialize Swagger

@@ -2,7 +2,6 @@ import { Sequelize } from "sequelize";
 import logs from "../config/logs.js";
 import defineTournament from "./tournament.js";
 import defineTournament_groups from "./tournaments-group.js";
-import defineToken from "./token.js";
 import defineTeams from "./teams.js";
 import definePlayers from "./players.js";
 import defineClubs from "./clubs.js";
@@ -21,7 +20,6 @@ const sequelize = new Sequelize("football", "postgres", "1111", {
 })
 const Tournament = defineTournament(sequelize);
 const Tournament_groups = defineTournament_groups(sequelize);
-const Token = defineToken(sequelize);
 const Teams = defineTeams(sequelize);
 const Players = definePlayers(sequelize);
 const Clubs = defineClubs(sequelize);
@@ -33,7 +31,6 @@ const db = {
     Sequelize,
     Tournament,
     Tournament_groups,
-    Token,
     Teams,
     Players,
     Clubs,
