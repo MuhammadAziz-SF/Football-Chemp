@@ -13,14 +13,12 @@ import pool from '../libs/db.js';
 const sequelize = new Sequelize("football", "postgres", "1111", {
     host: "localhost",
     dialect: "postgres",
-    logging: (msg) => logs.info(msg), 
+    logging: (msg) => logs.info(msg),
     define: {
         timestamps: false,
         freezeTableName: true,
     },
-});
-
-
+})
 const Tournament = defineTournament(sequelize);
 const Tournament_groups = defineTournament_groups(sequelize);
 const Token = defineToken(sequelize);
@@ -29,16 +27,7 @@ const Players = definePlayers(sequelize);
 const Clubs = defineClubs(sequelize);
 const MatchFixtures = defineMatchFixtures(sequelize);
 
-
-Tournament_groups.belongsTo(Tournament, { foreignKey: 'tournament_id' });
-Teams.belongsTo(Clubs, { foreignKey: 'club_id' });
-Teams.belongsTo(Tournament_groups, { foreignKey: 'group_id' });
-Players.belongsTo(Teams, { foreignKey: 'team_id' });
-MatchFixtures.belongsTo(Teams, { as: 'HomeTeam', foreignKey: 'home_team_id' });
-MatchFixtures.belongsTo(Teams, { as: 'AwayTeam', foreignKey: 'away_team_id' });
-MatchFixtures.belongsTo(Tournament, { foreignKey: 'tournament_id' });
-
-
+// Initialize database connection
 const db = {
     sequelize,
     Sequelize,
@@ -54,3 +43,4 @@ const db = {
 };
 
 export default db;
+

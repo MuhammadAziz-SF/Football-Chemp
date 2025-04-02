@@ -1,5 +1,4 @@
 import { DataTypes, Model } from "sequelize";
-import tournament from "./tournament";
 
 export default (sequelize) => {
     const TournamentsGroup = sequelize.define(
